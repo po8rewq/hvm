@@ -95,13 +95,13 @@ fi
 if [ ! -d "$HAXELIBPATH" ]; then
 	mkdir -p "$HVM/versions/haxelib"
 
-	VERSION=$( echo "$HAXELIB" | tr "." "," )
-	URL="http://lib.haxe.org/files/3.0/haxelib_client-$VERSION.zip"
-	ARCHIVE="$HAXELIBPATH.zip"
-
 	if [ "$HAXELIB" == "dev" ]; then
 		URL="https://github.com/HaxeFoundation/haxelib/archive/master.zip"
+	else
+		URL="https://github.com/HaxeFoundation/haxelib/archive/$HAXELIB.zip"
 	fi
+	
+	ARCHIVE="$HAXELIBPATH.zip"
 
 	echo "downloading $URL"
 	curl "$URL" -o "$ARCHIVE" -# -L
